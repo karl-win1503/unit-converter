@@ -2,7 +2,7 @@
 
 # Simples conversor de unidades. Para rodar, abrir um terminal na pasta que o programa estiver, em um sistema com Python 3 instalado, escrever "python unit-converter.py" e apertar enter.
 
-# tenta converter uma variavel para uma int, e retorna um erro se nao conseguir
+# funcao try_convert_int - tenta converter uma variavel para uma int, e retorna um erro se nao conseguir
 def try_convert_int(i):
     try:
         int(i)
@@ -10,7 +10,7 @@ def try_convert_int(i):
     except ValueError:
         return 0
 
-
+# introducao
 print("Bem vindo ao conversor de unidades! Qual unidade voce quer converter para qual?")
 print("(1) Centimetro para Polegada")
 print("(2) Polegada para Centimetro")
@@ -23,18 +23,24 @@ print("(8) Fahrenheit para Celsius")
 print("(9) Kilo para Libra")
 print("(0) Libra para Kilo")
 
+# pede input do usuario e coloca na variavel choice
 choice = input("Por favor escreva o numero desejado: ")
 
+# loop que testa se choice é uma integer, e  caso nao seja, pede input de novo. Tambem testa se a integer esta entre 0 e 9
 while not try_convert_int(choice) or int(choice) < 0 or int(choice) > 9:
     choice = input("O numero inserido nao corresponde a lista. Por favor escolha de novo: ")
 
+# converte choice pra uma integer, depois de ter certeza que essa conversao nao vai dar erro
 choice = int(choice)
 
-
+# pede a quantidade da medida a ser convertida, e coloca na variavel quantity
 quantity = input("Qual a quantidade? ")
+
+# teste similar ao de cima, pra ter certeza que essa quantidade tambem é um numero valido.
 while not try_convert_int(quantity):
     quantity = input("Numero invalido. Por favor insira de novo: ")
 
+# dependendo da conversao escolhida, aplica uma formula diferente e coloca o resultado em "value", que é entao returnado pro usuario como uma string.
 if choice == 1:
     value = int(quantity) * 0.39
     print(quantity + " centimetros equivale " + str(value) + " polegadas")
